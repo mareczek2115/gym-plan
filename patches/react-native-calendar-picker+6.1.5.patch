@@ -1,0 +1,73 @@
+diff --git a/node_modules/react-native-calendar-picker/CalendarPicker/YearsHeader.js b/node_modules/react-native-calendar-picker/CalendarPicker/YearsHeader.js
+index 4525149..d8ba7b1 100644
+--- a/node_modules/react-native-calendar-picker/CalendarPicker/YearsHeader.js
++++ b/node_modules/react-native-calendar-picker/CalendarPicker/YearsHeader.js
+@@ -28,7 +28,7 @@ export default function YearsHeader(props) {
+   } = props;
+ 
+   const disablePrevious = restrictNavigation && (minDate.year() >= year);
+-  const disableNext = restrictNavigation && (maxDate.year() <= year);
++  // const disableNext = restrictNavigation && (maxDate.year() <= year);
+ 
+   const accessibilityProps = { accessibilityRole: 'header' };
+   if (Platform.OS === 'web') {
+@@ -49,7 +49,7 @@ export default function YearsHeader(props) {
+         { title }
+       </Text>
+       <Controls
+-        disabled={disableNext}
++        // disabled={disableNext}
+         label={nextTitle}
+         component={nextComponent}
+         onPressControl={onYearViewNext}
+diff --git a/node_modules/react-native-calendar-picker/CalendarPicker/index.js b/node_modules/react-native-calendar-picker/CalendarPicker/index.js
+index ac869fe..f31742b 100644
+--- a/node_modules/react-native-calendar-picker/CalendarPicker/index.js
++++ b/node_modules/react-native-calendar-picker/CalendarPicker/index.js
+@@ -345,6 +345,11 @@ export default class CalendarPicker extends Component {
+       currentYear--;
+     }
+     this.handleOnPressFinisher({year: currentYear, month: previousMonth});
++    this.setState({
++      selectedStartDate: null,
++      selectedEndDate: null
++    })
++    this.props.clearButtons()
+   }
+ 
+   handleOnPressNext() {
+@@ -357,6 +362,11 @@ export default class CalendarPicker extends Component {
+       currentYear++;
+     }
+     this.handleOnPressFinisher({year: currentYear, month: nextMonth});
++    this.setState({
++      selectedStartDate: null,
++      selectedEndDate: null
++    })
++    this.props.clearButtons()
+   }
+ 
+   handleOnPressFinisher({year, month}) {
+@@ -384,12 +394,22 @@ export default class CalendarPicker extends Component {
+   }
+ 
+   handleOnPressYear() {
++    this.setState({
++      selectedStartDate: null,
++      selectedEndDate: null
++    })
++    this.props.clearButtons()
+     this.setState({
+       currentView: 'years'
+     });
+   }
+ 
+   handleOnPressMonth() {
++    this.setState({
++      selectedStartDate: null,
++      selectedEndDate: null
++    })
++    this.props.clearButtons()
+     this.setState({
+       currentView: 'months'
+     });
