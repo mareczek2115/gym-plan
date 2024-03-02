@@ -15,8 +15,4 @@ The application allows you to add new exercises, edit existing ones and add, edi
 
 ## Download
 
-Download the app from here:
-
-## Feedback
-
-If you have any feedback, feel free to contact me at markoni@spoko.pl
+The built APK file is included in the repo, you can download the app and test it on your mobile device.
