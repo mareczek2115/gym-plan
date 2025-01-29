@@ -17,3 +17,9 @@ export type Training = {
   isCompleted: boolean;
   exercises: Exercise[];
 };
+
+export type TrainingStateKeys =
+  | 'pastTrainings'
+  | 'futureTrainings'
+  | 'selectedTrainingsList'
+  | 'selectedTraining';
