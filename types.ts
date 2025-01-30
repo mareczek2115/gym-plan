@@ -6,8 +6,8 @@ export type Muscle = {
 export type Exercise = {
   id: number;
   name: string;
-  involvedMuscles: Muscle[];
-  lastPerformed: string;
+  involvedMuscles: number[];
+  lastPerformed: string | null;
 };
 
 export type Training = {
@@ -15,7 +15,8 @@ export type Training = {
   name: string;
   date: string;
   isCompleted: boolean;
-  exercises: Exercise[];
+  exercises: number[];
+  isFuture: boolean;
 };
 
 export type TrainingStateKeys =
@@ -23,3 +24,8 @@ export type TrainingStateKeys =
   | 'futureTrainings'
   | 'selectedTrainingsList'
   | 'selectedTraining';
+
+export type RootDrawerParamList = {
+  'show-exercises': undefined;
+  'edit-exercise': { item: Exercise };
+};

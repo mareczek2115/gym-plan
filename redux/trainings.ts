@@ -2,13 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Training, TrainingStateKeys } from '../types';
 
 type TrainingPayload<K extends TrainingStateKeys> = K extends 'selectedTraining'
-  ? Training
+  ? Training | undefined
   : Training[];
 
-const initialState: Record<
-  TrainingStateKeys,
-  Training[] | Training | undefined
-> = {
+type TrainingState = {
+  [K in TrainingStateKeys]: TrainingPayload<K>;
+};
+
+const initialState: TrainingState = {
   pastTrainings: [],
   futureTrainings: [],
   selectedTrainingsList: [],
@@ -20,13 +21,13 @@ export const trainingsSlice = createSlice({
   initialState,
   reducers: {
     updateTrainingsState: <K extends TrainingStateKeys>(
-      state: Record<TrainingStateKeys, Training[] | Training | undefined>,
+      state: TrainingState,
       action: PayloadAction<{
         key: K;
         value: TrainingPayload<K>;
       }>
     ) => {
-      state[action.payload.key] = action.payload.value;
+      (state[action.payload.key] as TrainingPayload<K>) = action.payload.value;
     },
   },
 });
